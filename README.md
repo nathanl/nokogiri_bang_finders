@@ -20,6 +20,10 @@ This gem is so tiny, you could just copy and paste its code. But if it's conveni
 
 ... or via Bundler.
 
+## Requiring
+
+Be sure to `require 'nokogiri_bang_finders'` **after** you `require 'nokogiri'`. It expects `Nokogiri::XML::Node` and `Nokogiri::XML::NodeSet` to be defined so that it can add methods to them.
+
 ## Usage
 
 Use these methods just like you would use the normal Nokogiri versions, but expect an exception if the XML doesn't contain what you're looking for.
