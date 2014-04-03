@@ -24,12 +24,8 @@ describe Nokogiri::XML::BangFinders do
 
     describe "when #at returns nil" do
 
-      before :each do
-        expect(xml_doc).to receive('at').with('aliens').and_return(nil)
-      end
-
       it "raises an exception" do
-        expect{xml_doc.at!('aliens')}.to raise_error(Nokogiri::XML::NotFound)
+        expect{xml_doc.at!('robots')}.to raise_error(Nokogiri::XML::NotFound)
       end
 
     end
@@ -53,12 +49,8 @@ describe Nokogiri::XML::BangFinders do
 
     describe "when #at_css returns nil" do
 
-      before :each do
-        expect(xml_doc).to receive('at_css').with('aliens').and_return(nil)
-      end
-
       it "raises an exception" do
-        expect{xml_doc.at_css!('aliens')}.to raise_error(Nokogiri::XML::NotFound)
+        expect{xml_doc.at_css!('robots')}.to raise_error(Nokogiri::XML::NotFound)
       end
 
     end
@@ -82,12 +74,8 @@ describe Nokogiri::XML::BangFinders do
 
     describe "when #at_xpath returns nil" do
 
-      before :each do
-        expect(xml_doc).to receive('at_xpath').with('//aliens').and_return(nil)
-      end
-
       it "raises an exception" do
-        expect{xml_doc.at_xpath!('//aliens')}.to raise_error(Nokogiri::XML::NotFound)
+        expect{xml_doc.at_xpath!('//robots')}.to raise_error(Nokogiri::XML::NotFound)
       end
 
     end
