@@ -4,15 +4,15 @@ module Nokogiri
   module XML
     module BangFinders
       def at!(*args)
-        at(*args).tap       { |node| raise NotFound.new(args, self) if node.nil? }
+        node = at(*args);       raise NotFound.new(args, self) if node.nil?; node
       end
 
       def at_xpath!(*args)
-        at_xpath(*args).tap { |node| raise NotFound.new(args, self) if node.nil? }
+        node = at_xpath(*args); raise NotFound.new(args, self) if node.nil?; node
       end
 
       def at_css!(*args)
-        at_css(*args).tap   { |node| raise NotFound.new(args, self) if node.nil? }
+        node = at_css(*args);   raise NotFound.new(args, self) if node.nil?; node
       end
 
     end
