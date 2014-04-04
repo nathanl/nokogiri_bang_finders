@@ -23,7 +23,8 @@ module Nokogiri
         @message = "#{needle} in \n#{snippet(haystack)}"
       end
       def snippet(haystack)
-        haystack.to_s.tap {|s| s.length > 200 ? "#{s[0...200]}..." : s }
+        snippet = haystack.to_s
+        snippet.length > 200 ? "#{snippet[0...200]}..." : snippet
       end
     end
   end
