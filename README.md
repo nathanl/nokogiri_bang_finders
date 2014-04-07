@@ -1,6 +1,6 @@
 # nokogiri_bang_finders
 
-This gem says "Nokogiri, if you can't find XML I want, yell about it."
+This gem says "Nokogiri, if you can't find the XML I want, yell about it."
 
 Specifically, it adds the following methods:
 
