@@ -2,13 +2,32 @@
 
 This gem says "Nokogiri, if you can't find the XML I want, yell about it."
 
-Specifically, it adds the following methods:
+For example:
+
+```ruby
+doc = nokogiri::xml("<root><aliens><alien><name>alf</name></alien></aliens></root>")
+doc.at('alien').content # => "alf"
+
+# without nokogiri_bang_finders
+doc.at('robot').content # nomethoderror: undefined method `content' for nil:nilclass
+
+# with nokogiri_bang_finders
+doc.at!('robot').content # nokogiri::xml::notfound: ["robots"] in
+       <?xml version="1.0"?>
+       <root>
+         <aliens>
+           <alien>
+             <name>alf</name>
+           </alien>
+         </aliens>
+       </root>
+```
+
+Specifically, this gem adds the following methods to to `Nokogiri::XML::Node` and `Nokogiri::XML::NodeSet`:
 
 - `at!`
 - `at_xpath!`
 - `at_css!`
-
-...to `Nokogiri::XML::Node` and `Nokogiri::XML::NodeSet`.
 
 Each method just calls its non-bang namesake and, if the result is `nil`, raises `Nokogiri::XML::NotFound`.
 
