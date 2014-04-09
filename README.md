@@ -5,14 +5,15 @@ This gem says "Nokogiri, if you can't find the XML I want, yell about it."
 For example:
 
 ```ruby
-doc = nokogiri::xml("<root><aliens><alien><name>alf</name></alien></aliens></root>")
+Nokogiri::XML("<root><aliens><alien><name>alf</name></alien></aliens></root>
+doc = Nokogiri::XML("<root><aliens><alien><name>alf</name></alien></aliens></root>")
 doc.at('alien').content # => "alf"
 
 # without nokogiri_bang_finders
-doc.at('robot').content # nomethoderror: undefined method `content' for nil:nilclass
+doc.at('robot').content # NoMethodError: undefined method `content' for nil:nilclass
 
 # with nokogiri_bang_finders
-doc.at!('robot').content # nokogiri::xml::notfound: ["robots"] in
+doc.at!('robot').content # Nokogiri::XML::NotFound: ["robots"] in
        <?xml version="1.0"?>
        <root>
          <aliens>
