@@ -5,23 +5,14 @@ This gem says "Nokogiri, if you can't find the XML I want, yell about it."
 For example:
 
 ```ruby
-Nokogiri::XML("<root><aliens><alien><name>alf</name></alien></aliens></root>
-doc = Nokogiri::XML("<root><aliens><alien><name>alf</name></alien></aliens></root>")
-doc.at('alien').content # => "alf"
+doc = Nokogiri::XML("<root><aliens><alien><name>Alf</name></alien></aliens></root>")
+doc.at('alien').content # => "Alf"
 
 # without nokogiri_bang_finders
 doc.at('robot').content # NoMethodError: undefined method `content' for nil:nilclass
 
 # with nokogiri_bang_finders
-doc.at!('robot').content # Nokogiri::XML::NotFound: ["robots"] in
-       <?xml version="1.0"?>
-       <root>
-         <aliens>
-           <alien>
-             <name>alf</name>
-           </alien>
-         </aliens>
-       </root>
+doc.at!('robot').content # Nokogiri::XML::NotFound: '["robot"] in {snippet of the XML}'
 ```
 
 Specifically, this gem adds the following methods to to `Nokogiri::XML::Node` and `Nokogiri::XML::NodeSet`:
