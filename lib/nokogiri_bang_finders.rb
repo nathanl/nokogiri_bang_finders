@@ -24,7 +24,7 @@ module Nokogiri
       end
       def snippet(haystack)
         snippet = haystack.to_s
-        snippet.length > 200 ? "#{snippet[0...200]}..." : snippet
+        snippet.length <= 200 ? snippet : "#{snippet[0..199]}..."
       end
     end
   end

@@ -88,4 +88,29 @@ describe Nokogiri::XML::BangFinders do
 
   end
 
+  describe "providing context with an exception" do
+
+    let(:xml_doc) {
+      body = "<root><numbers>"
+      1_000.times do |i|
+        body << "<number>#{i}</number>"
+      end
+      body << "</numbers></root>"
+      Nokogiri::XML(body)
+    }
+
+    it "does not include the whole document" do
+      e = exception_from { xml_doc.at_css!("robots") }
+      expect(e.message).not_to include(xml_doc.to_s)
+    end
+
+
+    it "includes the first 200 characters of the document by default" do
+      e = exception_from { xml_doc.at_css!("robots") }
+      expect(e.message    ).to include(xml_doc.to_s[0..199])
+      expect(e.message).not_to include(xml_doc.to_s[0..200])
+    end
+
+  end
+
 end
