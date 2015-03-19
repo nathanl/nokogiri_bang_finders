@@ -12,3 +12,12 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'random'
 end
+
+def exception_from
+  begin
+    yield
+  rescue => e
+    return e
+  end
+  fail "Tried to get the exception from the block given, but it didn't raise one"
+end
