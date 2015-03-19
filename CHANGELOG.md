@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. Version num
 
 ## Unreleased
 
+None
+
+## 1.1.0 - 2015-03-19
+
 ### Added
 
 Allow user to specify an integer number of characters of context to be given with exceptions, or to request `:all` context, using `Nokogiri::XML::BangFinders.context_length = some_value`
