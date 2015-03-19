@@ -31,6 +31,8 @@ This gem is so tiny, you could just copy and paste its code. But if it's conveni
 
 You can specify an integer number of characters of context, like `Nokogiri::XML::BangFinders.context_length = 500`.
 
+Or you can specify `:all` to get the whole document in the exception message (though this probably isn't a good idea for production code): `Nokogiri::XML::BangFinders.context_length = :all`
+
 ## Installation
 
     $ gem install nokogiri_bang_finders

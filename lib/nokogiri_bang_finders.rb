@@ -5,11 +5,15 @@ module Nokogiri
     module BangFinders
 
       def self.context_length
-        @context_length || 200
+        @context_length ||= 200
       end
 
       def self.context_length=(val)
-        @context_length = val.to_i
+        @context_length = if val.to_s == "all"
+                            Float::INFINITY
+                          else
+                            val.to_i
+                          end
       end
 
       def at!(*args)
@@ -29,11 +33,11 @@ module Nokogiri
     class NotFound < StandardError
       attr_reader :message
       def initialize(needle, haystack)
-        @message = "#{needle} in \n#{snippet(haystack)}"
+        @message = "#{needle} in \n#{snippet(haystack)}\n"
       end
       def snippet(haystack)
         snippet = haystack.to_s
-        snippet.length <= context_length ? snippet : "#{snippet[0..(context_length - 1)]}..."
+        snippet.length <= context_length ? snippet : "#{snippet[0..(context_length - 1)]}...\n"
       end
 
       def context_length
