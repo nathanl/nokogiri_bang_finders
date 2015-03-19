@@ -111,6 +111,25 @@ describe Nokogiri::XML::BangFinders do
       expect(e.message).not_to include(xml_doc.to_s[0..200])
     end
 
+    describe "when context_length is given as a number" do
+
+      before :all do
+        @original_setting = Nokogiri::XML::BangFinders.context_length
+        Nokogiri::XML::BangFinders.context_length = 10
+      end
+
+      after :all do
+        Nokogiri::XML::BangFinders.context_length = @original_setting
+      end
+
+      it "includes the specified number of characters of context" do
+        e = exception_from { xml_doc.at_css!("robots") }
+        expect(e.message    ).to include(xml_doc.to_s[0..9])
+        expect(e.message).not_to include(xml_doc.to_s[0..10])
+      end
+
+    end
+
   end
 
 end

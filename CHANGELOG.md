@@ -4,7 +4,9 @@ All notable changes to this project will be documented in this file. Version num
 
 ## Unreleased
 
-Nothing
+### Added
+
+- Allow user to specify an integer number of characters of context to be given with exceptions.
 
 ## 1.0.0 - 2014-08-14
 

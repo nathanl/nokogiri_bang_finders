@@ -3,6 +3,15 @@ require "nokogiri_bang_finders/version"
 module Nokogiri
   module XML
     module BangFinders
+
+      def self.context_length
+        @context_length || 200
+      end
+
+      def self.context_length=(val)
+        @context_length = val.to_i
+      end
+
       def at!(*args)
         node = at(*args);       raise NotFound.new(args, self) if node.nil?; node
       end
@@ -24,7 +33,11 @@ module Nokogiri
       end
       def snippet(haystack)
         snippet = haystack.to_s
-        snippet.length <= 200 ? snippet : "#{snippet[0..199]}..."
+        snippet.length <= context_length ? snippet : "#{snippet[0..(context_length - 1)]}..."
+      end
+
+      def context_length
+        Nokogiri::XML::BangFinders.context_length
       end
     end
   end

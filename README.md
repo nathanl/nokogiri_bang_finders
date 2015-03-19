@@ -25,6 +25,12 @@ Each method just calls its non-bang namesake and, if the result is `nil`, raises
 
 This gem is so tiny, you could just copy and paste its code. But if it's convenient, use it. :smile:
 
+## Context
+
+ When an exception is raised, its message includes some context from the document, to show "I was looking for your selector in a document that looks like this". By default, up to 200 characters of context are given.
+
+You can specify an integer number of characters of context, like `Nokogiri::XML::BangFinders.context_length = 500`.
+
 ## Installation
 
     $ gem install nokogiri_bang_finders
